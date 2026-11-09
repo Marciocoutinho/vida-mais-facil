@@ -21,4 +21,8 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 
 ## Autoria
 
-Marcio Coutinho
+# Marcio Coutinho
+
+# vida-mais-facil
+
+Projeto de referência do simulado de Aplicações Web e Mobile — cenário Vida+Fácil / InovaVida Digital.
