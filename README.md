@@ -6,7 +6,7 @@ O projeto será construído de forma incremental, seguindo a ordem dos módulos 
 
 ## Estado atual
 
-O projeto está no Módulo A — Pesquisa e experiência. As fontes, a matriz CSD e as proto-personas dos três públicos foram consolidadas. A próxima etapa será especificar os requisitos funcionais e não funcionais.
+O projeto está no Módulo A — Pesquisa e experiência. As fontes, a matriz CSD, as proto-personas e os requisitos do MVP foram consolidados. A próxima etapa será representar os casos de uso e a navegação.
 
 Nenhuma funcionalidade da aplicação foi implementada até o momento.
 
@@ -25,6 +25,7 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 - [Evidências de pesquisa](docs/02-evidencias-pesquisa.md)
 - [Matriz CSD](docs/03-matriz-csd.md)
 - [Proto-personas](docs/04-personas.md)
+- [Requisitos e regras de negócio](docs/05-requisitos.md)
 
 ## Autoria
 
