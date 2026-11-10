@@ -2,11 +2,11 @@
 
 Projeto de referência técnica e pedagógica para o simulado da ocupação Aplicações Web e Mobile, desenvolvido no cenário fictício Vida+Fácil / InovaVida Digital.
 
-O projeto será construído de forma incremental, seguindo a ordem dos módulos A, B, C, D, E e F do Projeto-Teste. As decisões serão fundamentadas no briefing, no dataset, nos conteúdos educativos, nos documentos técnicos e na matriz oficial de requisitos e evidências.
+O projeto será construído de forma incremental, seguindo a ordem dos módulos A, B, C, D, E e F do Projeto-Teste. As decisões serão fundamentadas no briefing, no dataset, nos conteúdos educativos, nos documentos técnicos e na matriz de requisitos e evidências do simulado.
 
 ## Estado atual
 
-O projeto está no Módulo A — Pesquisa e experiência. Nesta etapa serão analisadas as fontes oficiais e produzidos os artefatos de pesquisa, requisitos e arquitetura da informação.
+O projeto está no Módulo A — Pesquisa e experiência. O Projeto-Teste e a matriz de requisitos já foram analisados. As próximas fontes serão o briefing e os materiais de apoio.
 
 Nenhuma funcionalidade da aplicação foi implementada até o momento.
 
@@ -22,11 +22,8 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 ## Documentação
 
 - [Fontes oficiais e inventário inicial](docs/01-fontes-oficiais.md)
+- [Evidências do Projeto-Teste e da matriz](docs/02-evidencias-pesquisa.md)
 
 ## Autoria
 
-# Marcio Coutinho
-
-# vida-mais-facil
-
-Projeto de referência do simulado de Aplicações Web e Mobile — cenário Vida+Fácil / InovaVida Digital.
+Marcio Coutinho
