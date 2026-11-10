@@ -6,7 +6,9 @@ O projeto será construído de forma incremental, seguindo a ordem dos módulos 
 
 ## Estado atual
 
-O projeto está no Módulo A — Pesquisa e experiência. Os artefatos essenciais de pesquisa, requisitos, casos de uso e navegação foram produzidos. A próxima etapa será consolidar e verificar a entrega do módulo.
+O Módulo A — Pesquisa e experiência está consolidado. Os artefatos de pesquisa, matriz CSD, proto-personas, requisitos, casos de uso e navegação foram produzidos e reunidos em um documento Word para avaliação.
+
+A entrega passou por inspeção visual de 30 páginas e por auditoria estrutural de acessibilidade, encerrada sem achados altos, médios ou baixos. As decisões ainda pendentes permanecem registradas no checklist de evidências antes do início do Módulo B.
 
 Nenhuma funcionalidade da aplicação foi implementada até o momento.
 
@@ -28,6 +30,8 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 - [Requisitos e regras de negócio](docs/05-requisitos.md)
 - [Casos de uso](docs/06-casos-de-uso.md)
 - [Mapa de navegação](docs/07-mapa-navegacao.md)
+- [Checklist de evidências do Módulo A](docs/08-checklist-evidencias.md)
+- [Especificação consolidada do Módulo A](docs/entregas/modulo-a/Especificacao_Modulo_A_Vida_Mais_Facil.docx)
 
 ## Autoria
 
