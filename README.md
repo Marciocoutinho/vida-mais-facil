@@ -19,6 +19,10 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 - Figma para wireframes, protótipo e design system;
 - Vercel para publicação, no módulo correspondente.
 
+## Documentação
+
+- [Fontes oficiais e inventário inicial](docs/01-fontes-oficiais.md)
+
 ## Autoria
 
 # Marcio Coutinho
