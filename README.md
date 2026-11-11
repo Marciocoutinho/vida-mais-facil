@@ -6,9 +6,11 @@ O projeto será construído de forma incremental, seguindo a ordem dos módulos 
 
 ## Estado atual
 
-O Módulo A — Pesquisa e experiência está consolidado. Os artefatos de pesquisa, matriz CSD, proto-personas, requisitos, casos de uso e navegação foram produzidos e reunidos em um documento Word para avaliação.
+Os módulos A e B estão concluídos.
 
-A entrega passou por inspeção visual de 30 páginas e por auditoria estrutural de acessibilidade, encerrada sem achados altos, médios ou baixos. As decisões ainda pendentes permanecem registradas no checklist de evidências antes do início do Módulo B.
+O Módulo A — Pesquisa e experiência consolidou os artefatos de pesquisa, matriz CSD, proto-personas, requisitos, casos de uso e navegação em documento Word para avaliação. A entrega passou por inspeção visual de 30 páginas e auditoria estrutural de acessibilidade, sem achados altos, médios ou baixos.
+
+O Módulo B — UX/UI reuniu no Figma as foundations, o design system com componentes reutilizáveis, o protótipo mobile dos fluxos B01–B11, as versões responsivas e o painel de evidências. O protótipo utiliza somente dados fictícios e não possui backend.
 
 Nenhuma funcionalidade da aplicação foi implementada até o momento.
 
@@ -32,6 +34,15 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 - [Mapa de navegação](docs/07-mapa-navegacao.md)
 - [Checklist de evidências do Módulo A](docs/08-checklist-evidencias.md)
 - [Especificação consolidada do Módulo A](docs/entregas/modulo-a/Especificacao_Modulo_A_Vida_Mais_Facil.docx)
+- [Arquivo Figma — Módulo B: UX/UI](https://www.figma.com/design/Gt2sX3sydfR12zF6HALCAS)
+
+### Entrega do Módulo B
+
+- `02 Foundations`: tokens de cor, tipografia, espaçamento, bordas e acessibilidade;
+- `03 Components`: biblioteca de componentes e variantes reutilizáveis;
+- `04 Prototype Mobile`: fluxos mobile B01–B11;
+- `05 Responsive`: adaptações para 360 px, 768 px e 1440 px;
+- `06 Evidence`: cobertura dos requisitos, fluxos, responsividade e acessibilidade.
 
 ## Autoria
 
