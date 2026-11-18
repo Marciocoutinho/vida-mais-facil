@@ -12,7 +12,9 @@ O Módulo A — Pesquisa e experiência consolidou os artefatos de pesquisa, mat
 
 O Módulo B — UX/UI reuniu no Figma as foundations, o design system com componentes reutilizáveis, o protótipo mobile dos fluxos B01–B11, as versões responsivas e o painel de evidências. O protótipo utiliza somente dados fictícios e não possui backend.
 
-Nenhuma funcionalidade da aplicação foi implementada até o momento.
+O Módulo C — Banco de Dados e Domínio definiu e validou a base MariaDB em Docker, o DER, o diagrama de classes, o dicionário de dados, o DDL, os dados iniciais fictícios e os Models/DTOs TypeScript. A estrutura foi inspecionada por consultas SQL e pelo MySQL Workbench.
+
+Ainda não há API ou interface executável. Os Models e DTOs do Módulo C representam a fundação de domínio para a futura API NestJS.
 
 ## Tecnologias previstas
 
@@ -35,6 +37,13 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 - [Checklist de evidências do Módulo A](docs/08-checklist-evidencias.md)
 - [Especificação consolidada do Módulo A](docs/entregas/modulo-a/Especificacao_Modulo_A_Vida_Mais_Facil.docx)
 - [Arquivo Figma — Módulo B: UX/UI](https://www.figma.com/design/Gt2sX3sydfR12zF6HALCAS)
+- [Dicionário de dados — Módulo C](docs/entregas/modulo-c/Dicionario_de_Dados.md)
+- [Especificação de software — Módulo C](docs/entregas/modulo-c/Especificacao_de_Software.md)
+- [Evidências — Módulo C](docs/entregas/modulo-c/Evidencias.md)
+- [DER — Módulo C](docs/entregas/modulo-c/diagramas/DER_Vida_Mais_Facil.png)
+- [Diagrama de classes — Módulo C](docs/entregas/modulo-c/diagramas/Diagrama_de_Classes_Vida_Mais_Facil.png)
+- [DDL do banco](database/ddl/001_schema.sql)
+- [Dados iniciais fictícios](database/dml/001_seed.sql)
 
 ### Entrega do Módulo B
 
@@ -43,6 +52,14 @@ Nenhuma funcionalidade da aplicação foi implementada até o momento.
 - `04 Prototype Mobile`: fluxos mobile B01–B11;
 - `05 Responsive`: adaptações para 360 px, 768 px e 1440 px;
 - `06 Evidence`: cobertura dos requisitos, fluxos, responsividade e acessibilidade.
+
+### Entrega do Módulo C
+
+- `01 Modelagem`: DER e diagrama de classes com cardinalidades e enums;
+- `02 Banco de dados`: dicionário de dados, DDL e dados iniciais fictícios;
+- `03 Ambiente local`: MariaDB em Docker, porta `3307` e verificação de saúde;
+- `04 Domínio`: Models e DTOs TypeScript organizados em `backend/src/domain`;
+- `05 Evidências`: consultas SQL, validação relacional e inspeção no MySQL Workbench.
 
 ## Autoria
 
