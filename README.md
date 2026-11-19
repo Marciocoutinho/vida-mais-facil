@@ -10,7 +10,7 @@ Os módulos A e B estão concluídos.
 
 O Módulo A — Pesquisa e experiência consolidou os artefatos de pesquisa, matriz CSD, proto-personas, requisitos, casos de uso e navegação em documento Word para avaliação. A entrega passou por inspeção visual de 30 páginas e auditoria estrutural de acessibilidade, sem achados altos, médios ou baixos.
 
-O Módulo B — UX/UI reuniu no Figma as foundations, o design system com componentes reutilizáveis, o protótipo mobile dos fluxos B01–B11, as versões responsivas e o painel de evidências. O protótipo utiliza somente dados fictícios e não possui backend.
+O Módulo B — UX/UI reuniu no Figma wireframes mobile de baixa fidelidade, foundations, design system com componentes reutilizáveis, o protótipo interativo dos fluxos B01–B11, as versões responsivas e o painel de evidências. As justificativas de design foram registradas como anexo da entrega. O protótipo utiliza somente dados fictícios e não possui backend.
 
 O Módulo C — Banco de Dados e Domínio definiu e validou a base MariaDB em Docker, o DER, o diagrama de classes, o dicionário de dados, o DDL, os dados iniciais fictícios e os Models/DTOs TypeScript. A estrutura foi inspecionada por consultas SQL e pelo MySQL Workbench.
 
@@ -36,7 +36,7 @@ Ainda não há API ou interface executável. Os Models e DTOs do Módulo C repre
 - [Mapa de navegação](docs/07-mapa-navegacao.md)
 - [Checklist de evidências do Módulo A](docs/08-checklist-evidencias.md)
 - [Especificação consolidada do Módulo A](docs/entregas/modulo-a/Especificacao_Modulo_A_Vida_Mais_Facil.docx)
-- [Arquivo Figma — Módulo B: UX/UI](https://www.figma.com/design/Gt2sX3sydfR12zF6HALCAS)
+- [Entrega do Módulo B — UX/UI](docs/entregas/modulo-b/README.md) — [Justificativas de Design](docs/entregas/modulo-b/Justificativas_de_Design.md) — [Arquivo Figma](https://www.figma.com/design/Gt2sX3sydfR12zF6HALCAS)
 - [Dicionário de dados — Módulo C](docs/entregas/modulo-c/Dicionario_de_Dados.md)
 - [Especificação de software — Módulo C](docs/entregas/modulo-c/Especificacao_de_Software.md)
 - [Evidências — Módulo C](docs/entregas/modulo-c/Evidencias.md)
@@ -47,6 +47,7 @@ Ainda não há API ou interface executável. Os Models e DTOs do Módulo C repre
 
 ### Entrega do Módulo B
 
+- `01 Wireframes Mobile`: wireframes mobile dos fluxos B01–B11;
 - `02 Foundations`: tokens de cor, tipografia, espaçamento, bordas e acessibilidade;
 - `03 Components`: biblioteca de componentes e variantes reutilizáveis;
 - `04 Prototype Mobile`: fluxos mobile B01–B11;
