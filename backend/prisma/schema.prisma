@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model agendamento {
+  id_agendamento     BigInt          @id @default(autoincrement()) @db.UnsignedBigInt
+  id_paciente        BigInt          @db.UnsignedBigInt
+  id_disponibilidade BigInt          @unique(map: "uq_agendamento_disponibilidade") @db.UnsignedBigInt
+  confirmado_em      DateTime        @default(now()) @db.DateTime(0)
+  disponibilidade    disponibilidade @relation(fields: [id_disponibilidade], references: [id_disponibilidade], map: "fk_agendamento_disponibilidade")
+  paciente           paciente        @relation(fields: [id_paciente], references: [id_paciente], map: "fk_agendamento_paciente")
+
+  @@index([id_paciente], map: "fk_agendamento_paciente")
+}
+
+model conteudo_educativo {
+  id_conteudo  BigInt                  @id @default(autoincrement()) @db.UnsignedBigInt
+  titulo       String                  @db.VarChar(180)
+  resumo       String                  @db.Text
+  tipo         conteudo_educativo_tipo
+  url          String                  @db.VarChar(2048)
+  publicado_em DateTime?               @db.Date
+  ativo        Boolean                 @default(true)
+}
+
+model disponibilidade {
+  id_disponibilidade BigInt                 @id @default(autoincrement()) @db.UnsignedBigInt
+  id_profissional    BigInt                 @db.UnsignedBigInt
+  inicio_em          DateTime               @db.DateTime(0)
+  fim_em             DateTime               @db.DateTime(0)
+  status             disponibilidade_status @default(DISPONIVEL)
+  criado_em          DateTime               @default(now()) @db.DateTime(0)
+  agendamento        agendamento?
+  profissional       profissional           @relation(fields: [id_profissional], references: [id_profissional], map: "fk_disponibilidade_profissional")
+
+  @@unique([id_profissional, inicio_em], map: "uq_disponibilidade_profissional_inicio")
+}
+
+model especialidade {
+  id_especialidade BigInt         @id @default(autoincrement()) @db.UnsignedBigInt
+  nome             String         @unique(map: "uq_especialidade_nome") @db.VarChar(100)
+  profissional     profissional[]
+}
+
+model indicador_saude {
+  id_indicador     BigInt               @id @default(autoincrement()) @db.UnsignedBigInt
+  id_paciente      BigInt               @db.UnsignedBigInt
+  tipo             indicador_saude_tipo
+  valor_principal  Decimal              @db.Decimal(10, 2)
+  valor_secundario Decimal?             @db.Decimal(10, 2)
+  unidade          String               @db.VarChar(20)
+  registrado_em    DateTime             @db.Date
+  criado_em        DateTime             @default(now()) @db.DateTime(0)
+  paciente         paciente             @relation(fields: [id_paciente], references: [id_paciente], map: "fk_indicador_paciente")
+
+  @@index([id_paciente], map: "fk_indicador_paciente")
+}
+
+model mensagem_contato {
+  id_mensagem_contato BigInt   @id @default(autoincrement()) @db.UnsignedBigInt
+  nome                String   @db.VarChar(120)
+  meio_contato        String   @db.VarChar(254)
+  assunto             String   @db.VarChar(150)
+  mensagem            String   @db.Text
+  criado_em           DateTime @default(now()) @db.DateTime(0)
+}
+
+model paciente {
+  id_paciente     BigInt            @id @default(autoincrement()) @db.UnsignedBigInt
+  id_usuario      BigInt            @unique(map: "uq_paciente_usuario") @db.UnsignedBigInt
+  agendamento     agendamento[]
+  indicador_saude indicador_saude[]
+  usuario         usuario           @relation(fields: [id_usuario], references: [id_usuario], map: "fk_paciente_usuario")
+}
+
+model profissional {
+  id_profissional       BigInt            @id @default(autoincrement()) @db.UnsignedBigInt
+  id_usuario            BigInt            @unique(map: "uq_profissional_usuario") @db.UnsignedBigInt
+  id_especialidade      BigInt            @db.UnsignedBigInt
+  registro_profissional String            @unique(map: "uq_profissional_registro") @db.VarChar(40)
+  disponibilidade       disponibilidade[]
+  especialidade         especialidade     @relation(fields: [id_especialidade], references: [id_especialidade], map: "fk_profissional_especialidade")
+  usuario               usuario           @relation(fields: [id_usuario], references: [id_usuario], map: "fk_profissional_usuario")
+
+  @@index([id_especialidade], map: "fk_profissional_especialidade")
+}
+
+model usuario {
+  id_usuario   BigInt         @id @default(autoincrement()) @db.UnsignedBigInt
+  nome         String         @db.VarChar(120)
+  email        String         @unique(map: "uq_usuario_email") @db.VarChar(254)
+  senha_hash   String         @db.VarChar(255)
+  perfil       usuario_perfil
+  criado_em    DateTime       @default(now()) @db.DateTime(0)
+  paciente     paciente?
+  profissional profissional?
+}
+
+enum indicador_saude_tipo {
+  GLICEMIA
+  PRESSAO_ARTERIAL
+  FREQUENCIA_CARDIACA
+  PESO
+}
+
+enum conteudo_educativo_tipo {
+  ARTIGO
+  VIDEO
+  GUIA
+}
+
+enum disponibilidade_status {
+  DISPONIVEL
+  RESERVADA
+  INATIVA
+}
+
+enum usuario_perfil {
+  PACIENTE
+  PROFISSIONAL
+}
