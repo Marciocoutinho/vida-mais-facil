@@ -24,14 +24,14 @@ Transformar as evidências do Módulo A em comportamentos verificáveis para ori
 | --- | --- | --- | --- | --- | --- |
 | RF-01 | Obrigatório | Confirmado | Apresentar página inicial com identidade do Vida+Fácil e acesso às áreas essenciais. | A página identifica o produto e oferece caminhos perceptíveis para conteúdo, cadastro e login. | E01, E05 |
 | RF-02 | Obrigatório | Confirmado | Permitir consultar conteúdo educativo. | A pessoa consegue localizar e abrir ao menos um conteúdo; o conteúdo é identificado como informativo, sem diagnóstico personalizado. | E03, B03, C04 |
-| RF-03 | Obrigatório | Refinado | Permitir o cadastro de paciente com os dados mínimos necessários. | Campos obrigatórios são identificados; dados inválidos geram mensagem junto ao campo; a senha não é exibida nem armazenada em texto simples. | R01, S10, DS04 |
-| RF-04 | Obrigatório | Refinado | Permitir o cadastro de profissional com dados pessoais, especialidade e registro profissional. | O perfil profissional é distinguido do paciente; especialidade e registro são validados como obrigatórios; disponibilidade não é armazenada como texto livre no perfil. | R01, R02 |
+| RF-03 | Obrigatório | Refinado | Permitir o cadastro de paciente com nome, telefone, CPF, endereço, e-mail e senha. | Campos obrigatórios são identificados; dados inválidos geram mensagem junto ao campo; CPF e e-mail não podem duplicar outra conta; a senha não é exibida nem armazenada em texto simples. | R01, S10, DS04 |
+| RF-04 | Obrigatório | Refinado | Permitir o cadastro de profissional com nome, telefone, especialidade, registro profissional e disponibilidade por dia e horário. | O perfil profissional é distinguido do paciente; especialidade e registro são validados como obrigatórios; a disponibilidade é registrada como horários estruturados, não como texto livre no perfil. | R01, R02 |
 | RF-05 | Obrigatório | Confirmado | Permitir autenticação e encerramento de sessão. | Credenciais válidas iniciam uma sessão; credenciais inválidas recebem mensagem sem revelar qual campo está cadastrado; sair encerra o acesso autenticado. | E05, R01 |
 | RF-06 | Obrigatório | Confirmado | Disponibilizar dashboard para a pessoa paciente. | Após entrar, a pessoa visualiza um resumo e acessos diretos para agendamento, indicadores e conteúdo. A ordem dos blocos será validada no wireframe. | E05, S03 |
 | RF-07 | Obrigatório | Refinado | Permitir buscar profissionais e horários disponíveis por especialidade, data e horário. | A busca apresenta somente opções compatíveis com os filtros e informa quando não há resultado. | R03, S09 |
 | RF-08 | Obrigatório | Confirmado | Permitir que a pessoa paciente agende um atendimento em horário disponível. | O resumo apresenta profissional, especialidade, data e horário; a confirmação cria um único agendamento; conflito de horário impede a operação e orienta nova escolha. | E03, B04, R03 |
 | RF-09 | Obrigatório | Refinado | Permitir que paciente e profissional consultem seus próprios atendimentos. | Cada perfil visualiza apenas atendimentos relacionados à sua conta, ordenados por data e horário. | B04, DS02 |
-| RF-10 | Obrigatório | A validar | Permitir manter horários de disponibilidade profissional. | Horários futuros podem ser criados e removidos; um horário agendado não pode ser removido silenciosamente. O ator responsável por essa gestão ainda precisa ser confirmado. | R02, S02, D05 |
+| RF-10 | Obrigatório | Refinado | Permitir que o profissional mantenha seus próprios horários de disponibilidade. | O profissional cria, edita ou remove horários futuros por dia e horário; um horário agendado não pode ser removido silenciosamente. | R02 |
 | RF-11 | Obrigatório | Confirmado | Permitir que a pessoa paciente registre indicadores manualmente. | É possível registrar glicemia, pressão arterial, frequência cardíaca ou peso com data, valor e unidade coerentes; erros são explicados antes do envio. | E03, B05, C06, C07 |
 | RF-12 | Obrigatório | Refinado | Permitir consultar, editar e excluir os próprios registros de indicadores. | A listagem exibe tipo, valor, unidade e data; edição e exclusão exigem confirmação apropriada; o histórico apresenta gráfico simples por tipo de indicador. | B06, R06 |
 | RF-13 | Obrigatório | Confirmado | Disponibilizar formulário de contato. | Nome, meio de contato, assunto e mensagem possuem validação; o envio apresenta confirmação ou erro; o destino real será definido antes da implementação. | B07, S08 |
@@ -64,6 +64,7 @@ Transformar as evidências do Módulo A em comportamentos verificáveis para ori
 | RN-06 | Toda criação, edição ou exclusão apresenta retorno curto e claro. | Confirmada | A interface deve prever estados de processamento, sucesso e erro. |
 | RN-07 | Cuidador não acessa dados de outra pessoa até que vínculo, consentimento e permissões sejam definidos. | Pendente | Nenhuma autorização de cuidador será inferida durante a implementação. |
 | RN-08 | Conteúdo fornecido é demonstrativo e não substitui avaliação profissional. | Refinada | O produto não interpreta valores nem prescreve conduta. |
+| RN-09 | Cada profissional gerencia apenas a própria disponibilidade e consulta somente sua agenda. | Refinada | A API e a interface devem conferir o perfil e a propriedade antes de criar, alterar, remover ou consultar horários. |
 
 ## Fora do escopo até decisão explícita
 
@@ -91,9 +92,8 @@ Transformar as evidências do Módulo A em comportamentos verificáveis para ori
 ## Pendências que impedem requisitos definitivos
 
 1. definir ações, vínculo, consentimento e permissões do cuidador;
-2. confirmar quem administra a disponibilidade profissional;
-3. definir cancelamento e reagendamento;
-4. aprovar campos pessoais obrigatórios e suas finalidades;
-5. definir unidades e validações dos quatro indicadores com revisão qualificada;
-6. decidir se e-mail será real, simulado ou substituído por confirmação no portal;
-7. esclarecer se observações ou sintomas pertencem a algum registro do MVP.
+2. definir cancelamento e reagendamento;
+3. aprovar campos pessoais obrigatórios e suas finalidades;
+4. definir unidades e validações dos quatro indicadores com revisão qualificada;
+5. decidir se e-mail será real, simulado ou substituído por confirmação no portal;
+6. esclarecer se observações ou sintomas pertencem a algum registro do MVP.

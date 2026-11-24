@@ -63,12 +63,12 @@ flowchart TD
     indicators --> indicatorHistory
 
     professionalDashboard --> professionalAgenda
-    professionalDashboard -.->|"Ator a validar"| availability
+    professionalDashboard --> availability
 
     style publicArea fill:#D9D9D9,stroke:#B3B3B3
     style patientArea fill:#C2E5FF,stroke:#3DADFF
     style professionalArea fill:#DCCCFF,stroke:#874FFF
-    style availability fill:#FFECBD,stroke:#FFC943
+    style availability fill:#DCCCFF,stroke:#874FFF
 ```
 
 ## Inventário de páginas
@@ -92,7 +92,7 @@ flowchart TD
 | Paciente | Histórico | Paciente | Consultar série temporal e gráfico por indicador. | RF-12, RNF-08 |
 | Profissional | Painel | Profissional | Dar acesso à agenda e às funções autorizadas. | RF-09 |
 | Profissional | Agenda | Profissional | Consultar atendimentos relacionados ao perfil. | RF-09 |
-| Profissional | Disponibilidade | Ator a validar | Criar ou remover horários futuros. | RF-10 |
+| Profissional | Disponibilidade | Profissional | Criar, editar ou remover os próprios horários futuros. | RF-10, RN-09 |
 
 ## Navegação global proposta
 
@@ -116,7 +116,7 @@ flowchart TD
 
 - painel;
 - agenda;
-- disponibilidade, somente após confirmação da responsabilidade;
+- disponibilidade;
 - sair.
 
 Não foi criada navegação autenticada para cuidador. Esse perfil poderá usar a área pública, mas qualquer acesso a dados de outra pessoa depende de vínculo, consentimento e permissões ainda não definidos.

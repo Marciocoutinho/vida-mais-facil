@@ -11,7 +11,7 @@ Representar como os atores interagem com as capacidades previstas para o MVP e l
 | Visitante | Pessoa sem sessão autenticada. | Acessa início, conteúdo público, cadastro, login e contato. |
 | Paciente | Pessoa autenticada que utiliza o serviço para si. | Gerencia apenas os próprios agendamentos e indicadores. |
 | Cuidador | Público previsto, ainda sem regra funcional aprovada. | Acesso apenas ao conteúdo público e, provisoriamente, ao contato. Não acessa dados de terceiros. |
-| Profissional | Pessoa autenticada com perfil e registro profissional. | Consulta sua agenda; a responsabilidade por manter disponibilidade está pendente. |
+| Profissional | Pessoa autenticada com perfil, especialidade e registro profissional. | Mantém a própria disponibilidade e consulta apenas a própria agenda. |
 | Serviço de e-mail | Integração externa opcional. | Só participa se houver infraestrutura e credenciais aprovadas. |
 
 ## Diagrama geral
@@ -71,7 +71,7 @@ flowchart LR
 
     professional --> authenticate
     professional --> viewProfessionalAppointments
-    professional -.->|"Responsável a validar"| maintainAvailability
+    professional --> maintainAvailability
 
     bookAppointment -.->|"Se habilitado"| sendConfirmation
     sendConfirmation -.-> emailService
@@ -79,7 +79,6 @@ flowchart LR
     style publicCases fill:#D9D9D9,stroke:#B3B3B3
     style patientCases fill:#C2E5FF,stroke:#3DADFF
     style professionalCases fill:#DCCCFF,stroke:#874FFF
-    style maintainAvailability fill:#FFECBD,stroke:#FFC943
     style sendConfirmation fill:#FFECBD,stroke:#FFC943
 ```
 
@@ -95,7 +94,7 @@ flowchart LR
 | UC-06 | Buscar disponibilidade | Paciente | Refinado | RF-07 |
 | UC-07 | Agendar atendimento | Paciente | Confirmado | RF-08, RN-03, RN-04 |
 | UC-08 | Consultar atendimentos | Paciente e profissional | Refinado | RF-09, RNF-05 |
-| UC-09 | Manter disponibilidade | Ator responsável a confirmar | A validar | RF-10, RN-03 |
+| UC-09 | Manter disponibilidade | Profissional | Refinado | RF-10, RN-03, RN-09 |
 | UC-10 | Gerenciar indicadores | Paciente | Confirmado | RF-11, RF-12, RN-02, RN-05, RNF-07 |
 | UC-11 | Consultar histórico de indicadores | Paciente | Confirmado | RF-12, RNF-08 |
 | UC-12 | Enviar contato | Visitante e paciente | Confirmado | RF-13 |
@@ -119,6 +118,23 @@ flowchart LR
 **Alternativas:** campos inválidos são preservados quando seguro e recebem mensagens específicas; e-mail já utilizado não cria uma segunda conta e recebe orientação sem expor outros dados.
 
 **Pós-condição:** existe uma conta de paciente apta a autenticar.
+
+### UC-03 — Cadastrar profissional
+
+**Pré-condição:** a pessoa não precisa estar autenticada.
+
+**Fluxo principal:**
+
+1. visitante escolhe criar conta de profissional;
+2. sistema apresenta nome, telefone, e-mail, senha, especialidade e registro profissional;
+3. visitante informa também um ou mais horários disponíveis, identificados por dia e horário;
+4. sistema valida os dados no cliente e no servidor;
+5. sistema protege a senha, cria a conta com perfil profissional e registra os horários estruturados;
+6. sistema confirma o cadastro e oferece acesso ao login.
+
+**Alternativas:** e-mail ou registro profissional já utilizado não criam uma segunda conta; dia ou horário inválido não é salvo e recebe orientação clara.
+
+**Pós-condição:** existe uma conta profissional apta a autenticar, com disponibilidade inicial válida.
 
 ### UC-04 — Entrar e sair
 
@@ -156,6 +172,42 @@ flowchart LR
 
 **Pós-condição:** existe um único agendamento associado ao paciente e ao profissional naquele horário.
 
+### UC-08 — Consultar atendimentos
+
+**Pré-condição:** paciente ou profissional autenticado.
+
+**Fluxo principal do paciente:**
+
+1. paciente abre a área de atendimentos;
+2. sistema lista somente os agendamentos vinculados à sua conta, em ordem de data e horário;
+3. paciente consulta o resumo do profissional, especialidade, data e horário.
+
+**Fluxo principal do profissional:**
+
+1. profissional abre a agenda;
+2. sistema lista somente os agendamentos associados à sua disponibilidade;
+3. profissional consulta a agenda por data e horário.
+
+**Alternativas:** quando não houver agendamento, o sistema informa o estado vazio sem exibir dados de outra pessoa.
+
+**Pós-condição:** cada perfil visualiza apenas os atendimentos autorizados.
+
+### UC-09 — Manter disponibilidade
+
+**Pré-condição:** profissional autenticado com perfil profissional ativo.
+
+**Fluxo principal:**
+
+1. profissional abre a área de disponibilidade;
+2. sistema apresenta os próprios horários futuros, identificados por dia, início e fim;
+3. profissional cria, edita ou solicita a remoção de um horário;
+4. sistema valida o período e a propriedade do horário;
+5. sistema grava a alteração e apresenta uma confirmação curta e clara.
+
+**Alternativas:** horários sobrepostos, passados ou inválidos não são gravados; horário com agendamento não é removido silenciosamente e recebe orientação sobre a ação permitida.
+
+**Pós-condição:** a disponibilidade futura do profissional reflete somente alterações válidas feitas pela própria conta.
+
 ### UC-10 — Gerenciar indicadores
 
 **Pré-condição:** paciente autenticado.
@@ -189,6 +241,20 @@ flowchart LR
 **Alternativas:** erros de preenchimento são associados aos campos; falha no processamento mantém os dados não sensíveis necessários à correção e oferece nova tentativa.
 
 **Pós-condição:** mensagem processada ou falha comunicada sem simular sucesso.
+
+## Fluxos consolidados por perfil
+
+### Paciente
+
+`Cadastro de paciente → Login → Dashboard → Buscar especialidade, profissional e horário → Confirmar agendamento → Consultar atendimentos`
+
+Em paralelo ou depois do agendamento, o paciente pode seguir `Dashboard → Indicadores → Criar, editar ou excluir registro → Consultar histórico`. A área de conteúdo educativo e o contato permanecem acessíveis sem depender desse fluxo.
+
+### Profissional
+
+`Cadastro profissional → Login → Painel profissional → Manter disponibilidade → Consultar agenda`
+
+O profissional informa especialidade, registro e horários por dia e horário. As operações de disponibilidade e agenda ficam restritas à própria conta; o fluxo não concede acesso aos indicadores de saúde do paciente.
 
 ## Casos de uso bloqueados por decisão
 

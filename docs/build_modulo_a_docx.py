@@ -380,7 +380,7 @@ def create_use_case_diagram(path: Path) -> None:
         ("Visitante", 130, ["Consultar conteúdo", "Criar conta", "Entrar", "Enviar contato"], "#F5F6F7", "#9AA3A8"),
         ("Paciente", 390, ["Ver dashboard", "Buscar horário", "Agendar", "Gerenciar indicadores", "Ver histórico"], "#E4F2FF", "#3DADFF"),
         ("Cuidador", 680, ["Consultar conteúdo", "Contato provisório"], "#FFF4D6", "#D4A62A"),
-        ("Profissional", 920, ["Entrar", "Consultar agenda", "Disponibilidade a validar"], "#EFE7FF", "#874FFF"),
+        ("Profissional", 920, ["Entrar", "Consultar agenda", "Manter disponibilidade"], "#EFE7FF", "#874FFF"),
     ]
     for actor, y, items, lane_fill, lane_outline in lanes:
         draw.rounded_rectangle((40, y - 35, 1760, y + 170), radius=24, fill=lane_fill, outline=lane_outline, width=3)
@@ -427,7 +427,7 @@ def create_navigation_diagram(path: Path) -> None:
         "newAppointment": (405, 790, 675, 875, "Novo atendimento", "#E4F2FF", "#3DADFF"),
         "indicators": (710, 790, 980, 875, "Indicadores", "#E4F2FF", "#3DADFF"),
         "agenda": (1085, 790, 1355, 875, "Agenda", "#EFE7FF", "#874FFF"),
-        "availability": (1390, 790, 1660, 875, "Disponibilidade", "#FFF3CE", "#C49200"),
+        "availability": (1390, 790, 1660, 875, "Disponibilidade", "#EFE7FF", "#874FFF"),
         "newIndicator": (485, 1030, 755, 1115, "Novo registro", "#E4F2FF", "#3DADFF"),
         "history": (800, 1030, 1070, 1115, "Histórico", "#E4F2FF", "#3DADFF"),
     }
@@ -452,11 +452,11 @@ def create_navigation_diagram(path: Path) -> None:
     for target in ("appointments", "newAppointment", "indicators"):
         connect("patient", target)
     connect("professional", "agenda")
-    connect("professional", "availability", dashed=True)
+    connect("professional", "availability")
     connect("indicators", "newIndicator")
     connect("indicators", "history")
 
-    draw.text((80, 1185), "A linha tracejada indica responsabilidade ainda não confirmada.", font=small, fill="#4A555C")
+    draw.text((80, 1185), "A área profissional permite manter horários e consultar a própria agenda.", font=small, fill="#4A555C")
     image.save(path, dpi=(220, 220))
 
 
@@ -658,7 +658,7 @@ def add_delivery_checklist(doc: Document) -> None:
         ["REQ-01 Fontes", "Atendido", "Inventário e evidências de pesquisa"],
         ["REQ-02 Personas", "Atendido com ressalva", "Três proto-personas; entrevistas não disponíveis"],
         ["REQ-03 CSD", "Atendido", "15 certezas, 10 suposições e 12 dúvidas"],
-        ["REQ-04 Requisitos", "Atendido", "14 RF, 10 RNF e 8 regras de negócio"],
+        ["REQ-04 Requisitos", "Atendido", "14 RF, 10 RNF e 9 regras de negócio"],
         ["REQ-05 Casos e navegação", "Atendido", "13 casos de uso e mapa com 18 páginas propostas"],
         ["REQ-06 README", "Atendido", "Contexto, estado, tecnologias e links atualizados"],
     ]
@@ -678,7 +678,7 @@ def add_delivery_checklist(doc: Document) -> None:
     doc.add_heading("Síntese do módulo", level=2)
     add_paragraph(doc, "Aprendizado: separar fato, hipótese e dúvida evita que lacunas do briefing se transformem em funcionalidades ou permissões inseguras.")
     add_paragraph(doc, "Entrega: pesquisa consolidada, matriz CSD, três proto-personas, requisitos priorizados, regras de negócio, casos de uso e mapa de navegação.")
-    add_paragraph(doc, "Pendências: validar o papel do cuidador, a gestão de disponibilidade, cancelamento e reagendamento, campos pessoais, unidades dos indicadores, observações ou sintomas e o canal de e-mail.")
+    add_paragraph(doc, "Pendências: validar o papel do cuidador, cancelamento e reagendamento, campos pessoais, unidades dos indicadores, observações ou sintomas e o canal de e-mail.")
     add_paragraph(doc, "Próximo módulo: Módulo B, com wireframes, protótipo navegável e design system no Figma, somente após a revisão desta especificação.")
 
     doc.add_heading("Referências do pacote", level=2)
@@ -724,14 +724,14 @@ def main() -> None:
             ROOT / "docs" / "06-casos-de-uso.md",
             "5 Casos de uso",
             use_case_diagram,
-            "Diagrama dos atores e casos de uso. Visitante acessa conteúdo, cadastro, login e contato. Paciente acessa dashboard, busca, agendamento, indicadores e histórico. Cuidador permanece restrito ao conteúdo público e contato provisório. Profissional acessa login e agenda; disponibilidade está a validar.",
+            "Diagrama dos atores e casos de uso. Visitante acessa conteúdo, cadastro, login e contato. Paciente acessa dashboard, busca, agendamento, indicadores e histórico. Cuidador permanece restrito ao conteúdo público e contato provisório. Profissional acessa login, mantém disponibilidade e consulta a própria agenda.",
         )
         add_markdown_file(
             doc,
             ROOT / "docs" / "07-mapa-navegacao.md",
             "6 Mapa de navegação",
             navigation_diagram,
-            "Mapa de navegação hierárquico. A página inicial leva a conteúdo, cadastro, login e contato. O login direciona ao dashboard do paciente ou painel profissional. A área do paciente inclui atendimentos, novo atendimento, indicadores, novo registro e histórico. A área profissional inclui agenda e disponibilidade ainda a validar.",
+            "Mapa de navegação hierárquico. A página inicial leva a conteúdo, cadastro, login e contato. O login direciona ao dashboard do paciente ou painel profissional. A área do paciente inclui atendimentos, novo atendimento, indicadores, novo registro e histórico. A área profissional inclui agenda e disponibilidade.",
         )
         add_delivery_checklist(doc)
         doc.save(OUTPUT)
